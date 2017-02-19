@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="StyleSheet.css" />
 </head>
 <body>
-        <form id="file-manager" enctype="multipart/form-data" action="generator.php" method="POST">
-            <span id="output"><img class="thumb" id="thumb" title="Load" alt="Upload" src="loadimg.jpg" /></span>
+    <form id="file-manager" enctype="multipart/form-data" action="generator.php" method="POST">
+        <span id="output"><img class="thumb" id="thumb" title="Load" alt="Upload" src="loadimg.jpg" /></span>
             <div class="exif">
                 <span class="tagname">Model: </span><input class="tagvalue" id="model" type="text" name="model" value="" readonly="readonly" /><br />
                 <span class="tagname">Lens: </span><input class="tagvalue" id="lens" type="text" name="lens" value="" readonly="readonly" /><br />
@@ -18,9 +18,8 @@
                 <span class="tagname">ISO: </span><input class="tagvalue" id="iso" type="text" name="iso" value="" readonly="readonly" /><br />
             </div>
             <input id="input-file" type="file" name="filename" style="display: none" /><br />
-        </form>
-    <input class="settings" id="settings" type="button" name="settings" value="Settings" /><br />
-<br/>
-<script type="text/javascript" src="generator.js"></script>
+    </form>
+    <input class="settings" id="settings" type="button" name="settings" value="Settings" />
+    <script type="text/javascript" src="generator.js"></script> 
 </body>
 </html>
