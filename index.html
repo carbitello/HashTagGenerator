@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="exif.js"></script>
+    <link rel="stylesheet" type="text/css" href="StyleSheet.css" />
+</head>
+<body>
+        <form id="file-manager" enctype="multipart/form-data" action="generator.php" method="POST">
+            <span id="output"><img class="thumb" id="thumb" title="Load" alt="Upload" src="loadimg.jpg" /></span>
+            <div class="exif">
+                <span class="tagname">Model: </span><input class="tagvalue" id="model" type="text" name="model" value="" readonly="readonly" /><br />
+                <span class="tagname">Lens: </span><input class="tagvalue" id="lens" type="text" name="lens" value="" readonly="readonly" /><br />
+                <span class="tagname">Exposure: </span><input class="tagvalue" id="exposure" type="text" name="exposure" value="" readonly="readonly" /><br />
+                <span class="tagname">Exposure mode: </span><input class="tagvalue" id="exposure-mode" type="text" name="exposure-mode" value="" readonly="readonly" /><br />
+                <span class="tagname">Focal length: </span><input class="tagvalue" id="focalLength" type="text" name="focalLength" value="" readonly="readonly" /><br />
+                <span class="tagname">Aperture: </span><input class="tagvalue" id="aperture" type="text" name="aperture" value="" readonly="readonly" /><br />
+                <span class="tagname">ISO: </span><input class="tagvalue" id="iso" type="text" name="iso" value="" readonly="readonly" /><br />
+            </div>
+            <input id="input-file" type="file" name="filename" style="display: none" /><br />
+        </form>
+    <input class="settings" id="settings" type="button" name="settings" value="Settings" /><br />
+<br/>
+<script type="text/javascript" src="generator.js"></script>
+</body>
+</html>
