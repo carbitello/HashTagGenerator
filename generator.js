@@ -14,7 +14,7 @@
             //document.getElementById("iso").value = EXIF.getTag(this, "ISOSpeedRatings");
             //           
             var allMetaData = EXIF.getAllTags(this);
-            var allMetaDataSpan = document.getElementById("allMetaDataSpan");
+            //var allMetaDataSpan = document.getElementById("allMetaDataSpan");
             document.getElementById("iso").innerHTML = JSON.stringify(allMetaData, null, "\t");
             //
             var reader = new FileReader();
