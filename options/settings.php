@@ -11,14 +11,14 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width" />
-        <title></title>
     </head>
     <body>
         <?php  
             echo 'Settings - <br />';
             echo 'Camera: '.$model.',<br />';
             echo 'Lens: '.$lens.',<br />';
-            echo 'Exposure: '.$exposuremode.' '.$exposuretime.'sec.,<br />';
+            echo 'Exposure mode: '.$exposuremode.',<br />';
+            echo 'Exposure time: '.$exposuretime.'sec.,<br />';
             echo 'Aperture: '.$aperture.',<br />';
             echo 'Focal length: '.$focalLength.',<br />';
             echo 'ISO: '.$iso.'.<br />';

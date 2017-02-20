@@ -28,7 +28,7 @@
         document.getElementById("file-manager").removeChild(document.getElementById("input-file"));
     }
     document.getElementById("output").onclick = function () {
-        if (document.getElementById("thumb").getAttribute("src") === "loadimg.jpg") {
+        if (document.getElementById("thumb").getAttribute("src") === "images/loadimg.jpg") {
             document.getElementById("input-file").click();
         } else {
             document.getElementById("file-manager").removeChild(document.getElementById("output"));
@@ -36,7 +36,7 @@
         }
     }
     document.getElementById("settings").onclick = function () {
-        document.forms[0].action = "settings.php";
+        document.forms[0].action = "options/settings.php";
         document.forms[0].submit();
     }
 
