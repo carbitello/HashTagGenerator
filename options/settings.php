@@ -1,27 +1,16 @@
-<?php
-    $model = $_POST['model'];
-    $lens = $_POST['lens'];
-    $exposuretime = $_POST['exposure'];
-    $exposuremode = $_POST['exposure-mode'];
-    $focalLength = $_POST['focalLength'];
-    $aperture = $_POST['aperture'];
-    $iso = $_POST['iso'];
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width" />        
     </head>
     <body>
-        <?php  
-            echo 'Settings - <br />';
-            echo 'Camera: '.$model.',<br />';
-            echo 'Lens: '.$lens.',<br />';
-            echo 'Exposure mode: '.$exposuremode.',<br />';
-            echo 'Exposure time: '.$exposuretime.'sec.,<br />';
-            echo 'Aperture: '.$aperture.',<br />';
-            echo 'Focal length: '.$focalLength.',<br />';
-            echo 'ISO: '.$iso.'.<br />';
-        ?>
+        <form id="options-manager" enctype="multipart/form-data" action="" method="POST">
+            <input type="button"  class="settings-button" id="camera-settings" name="camera-settings" value="Camera" /> 
+            <input type="button"  class="settings-button" id="lens-settings" name="lens-settings" value="Lens" />
+            <input type="button"  class="settings-button" id="tags-settings" name="tags-settings" value="Tags" />
+            <input type="hidden" name="model" value="<?= $_POST['model']; ?>" />
+            <input type="hidden" name="lens" value="<?= $_POST['lens']; ?>" />
+        </form>
+        <script type="text/javascript" src="settings.js"></script>
     </body>
 </html>
