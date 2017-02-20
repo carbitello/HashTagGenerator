@@ -12,7 +12,10 @@
             document.getElementById("focalLength").value = EXIF.getTag(this, "FocalLengthIn35mmFilm");
             document.getElementById("aperture").value = EXIF.getTag(this, "FNumber");
             document.getElementById("iso").value = EXIF.getTag(this, "ISOSpeedRatings");
-
+            //           
+            //var allMetaData = EXIF.getAllTags(this);
+            //document.getElementById("iso").innerHTML = JSON.stringify(allMetaData, null, "\t");
+            //
             var reader = new FileReader();
             reader.onload = (function (theFile) {
                 return function (e) {
