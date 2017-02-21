@@ -1,7 +1,7 @@
 <?php
     $model = $_POST['model'];
     $lens = $_POST['lens'];
-    $exposuretime = $_POST['exposure'];
+    $exposuretime = get_shutter($_POST['exposure']);
     $exposuremode = $_POST['exposure-mode'];
     $focalLength = $_POST['focalLength'];
     $aperture = $_POST['aperture'];
@@ -34,7 +34,7 @@
         <?php  
             echo 'Camera: '.$model.',<br />';
             echo 'Lens: '.$lens.',<br />';
-            echo 'Exposure: '.$exposuremode.' '.$exposuretime.'sec.,<br />';
+            echo 'Exposure: '.$exposuremode.' '.$exposuretime.',<br />';
             echo 'Aperture: '.$aperture.',<br />';
             echo 'Focal length: '.$focalLength.',<br />';
             echo 'ISO: '.$iso.'.<br />';
