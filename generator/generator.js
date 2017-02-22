@@ -1,18 +1,18 @@
-function copyToBuffer(element) {
+document.getElementById("copytobuf").onclick = function () {
+    element = document.getElementById("outputtext");
     try {
-        var $temp = $('<input>');
-        $('body').append($temp);
-        $temp.val($(element).val()).select();
+        element.select();
 
         var successful = document.execCommand('copy');
         var msg = successful ? 'successful' : 'unsuccessful';
-
         if (msg === 'successful') {
-            $('#copyButtonToolip').stop().stop().fadeTo(300, 1).fadeTo(1200, 0);
+            document.getSelection().removeAllRanges();
+            window.getSelection().removeAllRanges();
         }
-
-        $temp.remove();
-    } catch (err) { }
-
-    window.getSelection().removeAllRanges();
+    } catch (err) {
+        alert(err);
+    }
+    var count = (element.value.split('#').length - 1);
+    if (count > 30)
+        alert('You have ' + count + '#');
 }

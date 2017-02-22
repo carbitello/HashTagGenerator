@@ -906,8 +906,10 @@
     <body>
         <form method="post" action="generator.php">
             <textarea name="categories"><?php echo $categoriestext; ?></textarea><br />
-            <textarea name="outputtext"><?php echo $outputtext; ?></textarea><br />
+            <textarea id ="outputtext" name="outputtext"><?php echo $outputtext; ?></textarea><br />
             <input type="submit" value="generate" />
+            <input type="button" id="copytobuf" value="copy" />
         </form>
+        <script type="text/javascript" src="generator.js"></script>
     </body>
 </html>
