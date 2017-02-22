@@ -10,9 +10,10 @@ class Jsondb{
 	public function __construct($path = false){		 
         $jsondbpath = str_replace("jsondb.php", "", __FILE__);
         $jsondbpath = str_replace("modules", "", $jsondbpath);
-        echo $jsondbpath.$path;
+        //echo $jsondbpath.$path;
         //echo __FILE__;
 		$this->path = (!$path)?$jsondbpath.'/jdb/':$jsondbpath.$path;	
+        //echo $path;
 	}
 	
 	/*
@@ -416,7 +417,8 @@ class Jsondb{
 	 * $table - String. Table name. 
 	 */	
 	public function exists($table){
-		$path = $this->path.$table.'.json';	
+		$path = $this->path.$table.'.json';
+        echo $path;	
 		$errorConfig = file_exists($path);		
 		$path = $this->path.$table.'.config.json';		
 		$errorTable = file_exists($path);
