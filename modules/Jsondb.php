@@ -1,5 +1,6 @@
 <?php 
-
+    ini_set('display_errors',1);
+    error_reporting(E_ALL);
 class Jsondb{
 	private $tableConfigs = array();
 	public 	$last_insert_id = false,
@@ -9,6 +10,7 @@ class Jsondb{
 	public function __construct($path = false){		 
         $jsondbpath = str_replace("jsondb.php", "", $_SERVER['SCRIPT_FILENAME']);
         $jsondbpath = str_replace("modules", "", $jsondbpath);
+        echo $jsondbpath.$path;
 		$this->path = (!$path)?$jsondbpath.'/jdb/':$jsondbpath.$path;	
 	}
 	
