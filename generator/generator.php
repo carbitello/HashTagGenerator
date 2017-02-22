@@ -18,10 +18,10 @@
         $outputtext = $outputtext.'Lens: '.$lens_data[0]['text'].','.PHP_EOL;
         $outputtext = $outputtext.'Exposure: '.$exposuremode.' '.$exposuretime.','.PHP_EOL;
         $outputtext = $outputtext.'Aperture: f/'.$aperture.','.PHP_EOL;
-        if($lens_data[0]['needfl'] == 'TRUE') {
-            $outputtext = $outputtext.'Focal length: '.$focalLength.'mm,'.PHP_EOL;
-        }
-        $outputtext = $outputtext.'ISO: '.$iso.'.'.PHP_EOL;
+        //if($lens_data[0]['needfl'] == 'TRUE') {
+        //    $outputtext = $outputtext.'Focal length: '.$focalLength.'mm,'.PHP_EOL;
+        //}
+        //$outputtext = $outputtext.'ISO: '.$iso.'.'.PHP_EOL;
 
         //$categoriestext = '';
         //foreach($camera_data[0]['htgroups'] as $category){
