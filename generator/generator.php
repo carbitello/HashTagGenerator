@@ -27,8 +27,7 @@
             $outputtext = $outputtext.'Focal length: '.$focalLength.'mm,'.PHP_EOL;
         }
         $outputtext = $outputtext.'ISO: '.$iso.'.'.PHP_EOL;
-
-        
+                
         foreach($camera_data[0]['htgroups'] as $category){
             $categoriestext = $categoriestext.$category.PHP_EOL;
         }
