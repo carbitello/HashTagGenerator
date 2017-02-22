@@ -1,6 +1,4 @@
 <?php 
-    ini_set('display_errors',1);
-    error_reporting(E_ALL);
 class Jsondb{
 	private $tableConfigs = array();
 	public 	$last_insert_id = false,
@@ -8,11 +6,9 @@ class Jsondb{
 			$statusMSG = Array();
 	
 	public function __construct($path = false){
-        //$jsondbpath = str_replace("jsondb.php", "", __FILE__);
-        //$jsondbpath = str_replace("modules", "", $jsondbpath);
-        $jsondbpath = '/var/www/htgen/DB/';
-        $this->path = $jsondbpath;	
-		//$this->path = (!$path)?$jsondbpath.'/jdb/':$jsondbpath.$path;	
+        $jsondbpath = str_replace("jsondb.php", "", __FILE__);
+        $jsondbpath = str_replace("modules", "", $jsondbpath);
+		$this->path = (!$path)?$jsondbpath.'/jdb/':$jsondbpath.$path;	
 	}
 	
 	/*
@@ -417,7 +413,6 @@ class Jsondb{
 	 */	
 	public function exists($table){
 		$path = $this->path.$table.'.json';
-        echo $path;	
 		$errorConfig = file_exists($path);		
 		$path = $this->path.$table.'.config.json';		
 		$errorTable = file_exists($path);
