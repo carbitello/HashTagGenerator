@@ -18,7 +18,7 @@
 
         $camera_data = $jdb->select('*', 'cams', Array('where'=>Array('name'=>$_POST['model']),));
         $lens_data = $jdb->select('*', 'lens', Array('where'=>Array('id'=>$_POST['lens']),));
-        echo '<pre>'.print_r($camera_data,1).'</pre>';
+        //echo '<pre>'.print_r($camera_data,1).'</pre>';
         $outputtext = 'Camera: '.$camera_data[0]['text'].','.PHP_EOL;
         $outputtext = $outputtext.'Lens: '.$lens_data[0]['text'].','.PHP_EOL;
         $outputtext = $outputtext.'Exposure: '.$exposuremode.' '.$exposuretime.','.PHP_EOL;
