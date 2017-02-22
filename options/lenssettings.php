@@ -14,9 +14,6 @@
         );
         $result = $jdb->create('lens', $keys);
     }
-    //echo '<pre>'.print_r($_POST['htarray'],1).'</pre>';
-    //echo $_POST['htarray'];
-    //echo $_POST['htarray'][1];
     if(!empty($_POST['htarray'])){
         $lens = explode("\n", str_replace("\r", "", $_POST['htarray']));
         foreach($lens as $current){
