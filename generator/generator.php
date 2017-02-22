@@ -11,11 +11,11 @@
         require_once("../modules/jsondb.php");
         $jdb  = new Jsondb('/DB/');
 
-        $camera_data = $jdb->select('*', 'cams', Array('where'=>Array('name'=>$_POST['model']),));
-        $lens_data = $jdb->select('*', 'lens', Array('where'=>Array('id'=>$_POST['lens']),));
+        //$camera_data = $jdb->select('*', 'cams', Array('where'=>Array('name'=>$_POST['model']),));
+        //$lens_data = $jdb->select('*', 'lens', Array('where'=>Array('id'=>$_POST['lens']),));
 
-        $outputtext = 'Camera: '.$camera_data[0]['text'].','.PHP_EOL;
-        $outputtext = $outputtext.'Lens: '.$lens_data[0]['text'].','.PHP_EOL;
+        //$outputtext = 'Camera: '.$camera_data[0]['text'].','.PHP_EOL;
+        //$outputtext = $outputtext.'Lens: '.$lens_data[0]['text'].','.PHP_EOL;
         $outputtext = $outputtext.'Exposure: '.$exposuremode.' '.$exposuretime.','.PHP_EOL;
         $outputtext = $outputtext.'Aperture: f/'.$aperture.','.PHP_EOL;
         //if($lens_data[0]['needfl'] == 'TRUE') {
