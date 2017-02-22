@@ -7,8 +7,9 @@ class Jsondb{
 			$statusMSG = Array();
 	
 	public function __construct($path = false){		 
-		$this->path = (!$path)?$_SERVER['DOCUMENT_ROOT'].'/jdb/':$_SERVER['DOCUMENT_ROOT'].$path;	
-        echo $path;
+        $jsondbpath = str_replace("jsondb.php", "", $_SERVER['SCRIPT_FILENAME']);
+        $jsondbpath = str_replace("modules", "", $jsondbpath);
+		$this->path = (!$path)?$jsondbpath.'/jdb/':$jsondbpath.$path;	
 	}
 	
 	/*
