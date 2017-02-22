@@ -1,6 +1,6 @@
 <?php
-    ini_set('display_errors',1);
-    error_reporting(E_ALL);
+    //ini_set('display_errors',1);
+    //error_reporting(E_ALL);
     $categoriestext = '';
     $outputtext = '';
     $jsondbpath = str_replace("generator.php", "jsondb.php", $_SERVER['SCRIPT_FILENAME']);
@@ -101,7 +101,6 @@
         $jsondbpath = str_replace("generator.php", "", $_SERVER['SCRIPT_FILENAME']);
         $jsondbpath = str_replace("generator", "", $jsondbpath);
 		$this->path = (!$path)?$jsondbpath.'/jdb/':$jsondbpath.$path;
-        echo $this->path;	
 	}
 	
 	/*
