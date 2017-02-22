@@ -7,6 +7,16 @@
     $aperture = $_POST['aperture'];
     $iso = $_POST['iso'];
 
+    require_once("../modules/jsondb.php");
+    $jdb  = new Jsondb('/DB/');
+
+    $camera_data = $jdb->select('*', 'cams', Array('where'=>Array('name'=>$_POST['model']),));
+    $lens_data = $jdb->select('*', 'lens', Array('where'=>Array('id'=>$_POST['lens']),));
+
+
+    //echo '<pre>'.print_r($camera_data,1).'</pre>';
+    //echo '<pre>'.print_r($lens_data,1).'</pre>';
+
     function get_shutter($shutter) {
         $result = ' sec.';
         if($shutter < 1) {
@@ -17,6 +27,7 @@
         }
         return $result;
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
