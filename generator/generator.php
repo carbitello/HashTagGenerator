@@ -1,6 +1,8 @@
 <?php
-    //ini_set('display_errors',1);
-    //error_reporting(E_ALL);
+    ini_set('display_errors',1);
+    error_reporting(E_ALL);
+    $categoriestext = '';
+    $outputtext = '';
     if(empty($_POST['categories'])){
         $exposuretime = get_shutter($_POST['exposure']);
         $exposuremode = get_exposuretext($_POST['exposure-mode']);
@@ -8,9 +10,7 @@
         $aperture = $_POST['aperture'];
         $iso = $_POST['iso'];
 
-        //echo $_SERVER['DOCUMENT_ROOT'].'/modules/jsondb.php';
         require_once($_SERVER['DOCUMENT_ROOT'].'\modules\jsondb.php');
-        //require_once("../modules/jsondb.php");
         $jdb  = new Jsondb('/DB/');
 
         $camera_data = $jdb->select('*', 'cams', Array('where'=>Array('name'=>$_POST['model']),));
@@ -25,7 +25,7 @@
         }
         $outputtext = $outputtext.'ISO: '.$iso.'.'.PHP_EOL;
 
-        $categoriestext = '';
+        
         foreach($camera_data[0]['htgroups'] as $category){
             $categoriestext = $categoriestext.$category.PHP_EOL;
         }
@@ -60,7 +60,6 @@
         return $exposuremode;
     }
     function generatecategoriestags($categories) {
-    //    require_once("../modules/jsondb.php");
         require_once($_SERVER['DOCUMENT_ROOT'].'\modules\jsondb.php');
         $jdb  = new Jsondb('/DB/');
         $hts_data = $jdb->select('*', 'hts', '');
