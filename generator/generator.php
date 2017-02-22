@@ -1,4 +1,6 @@
 <?php
+    //ini_set('display_errors',1);
+    //error_reporting(E_ALL);
     if(empty($_POST['categories'])){
         $exposuretime = get_shutter($_POST['exposure']);
         $exposuremode = get_exposuretext($_POST['exposure-mode']);
@@ -16,8 +18,9 @@
         $outputtext = $outputtext.'Lens: '.$lens_data[0]['text'].','.PHP_EOL;
         $outputtext = $outputtext.'Exposure: '.$exposuremode.' '.$exposuretime.','.PHP_EOL;
         $outputtext = $outputtext.'Aperture: f/'.$aperture.','.PHP_EOL;
-        if($lens_data[0]['needfl'] == 'TRUE')
+        if($lens_data[0]['needfl'] == 'TRUE') {
             $outputtext = $outputtext.'Focal length: '.$focalLength.'mm,'.PHP_EOL;
+        }
         $outputtext = $outputtext.'ISO: '.$iso.'.'.PHP_EOL;
 
         $categoriestext = '';
@@ -27,7 +30,8 @@
         foreach($lens_data[0]['htgroups'] as $category){
             $categoriestext = $categoriestext.$category.PHP_EOL;
         }
-    } else {
+    }
+     else {
         $outputtext = $_POST['outputtext'].generatecategoriestags(explode("\n", str_replace("\r", "", $_POST['categories'])));
     }
     function get_shutter($shutter) {
@@ -59,14 +63,14 @@
         $hts_data = $jdb->select('*', 'hts', '');
         $result = '';
         foreach($hts_data as $currenttag) {
-            if ($a contains 'are')
-            if(!($result contains $currenttag['tag'].' ')) {
+            $currenttagtext = $currenttag['tag'].' ';
+            if(strpos($result, $currenttagtext) === false) {
                 foreach($currenttag['groups'] as $currentgroup) {
                     if(in_array($currentgroup, $categories) && ($currentgroup != '')){
                         $result = $result.$currenttag['tag'].' ';
                     }
                 }
-                if(count($currenttag['crossgroups']) > 1 && validcross($categories, $currenttag['crossgroups'])) {
+                if((count($currenttag['crossgroups']) > 1) && validcross($categories, $currenttag['crossgroups'])) {
                     $result = $result.$currenttag['tag'].' ';
                 }
             }
@@ -92,8 +96,8 @@
     </head>
     <body>
         <form method="post" action="generator.php">
-            <textarea name="categories"><?= $categoriestext; ?></textarea><br />
-            <textarea name="outputtext"><?= $outputtext; ?></textarea><br />
+            <textarea name="categories"><?php echo $categoriestext; ?></textarea><br />
+            <textarea name="outputtext"><?php echo $outputtext; ?></textarea><br />
             <input type="submit" value="generate" />
         </form>
     </body>
