@@ -8,7 +8,7 @@
         $aperture = $_POST['aperture'];
         $iso = $_POST['iso'];
 
-        //require_once("../modules/jsondb.php");
+        require_once("../modules/jsondb.php");
         //$jdb  = new Jsondb('/DB/');
 
         //$camera_data = $jdb->select('*', 'cams', Array('where'=>Array('name'=>$_POST['model']),));
