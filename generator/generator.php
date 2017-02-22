@@ -9,8 +9,10 @@
         $focalLength = $_POST['focalLength'];
         $aperture = $_POST['aperture'];
         $iso = $_POST['iso'];
-
-        require_once($_SERVER['APPL_PHYSICAL_PATH'].'\modules\jsondb.php');
+        //echo dirname(__FILE__).'\..\modules\jsondb.php';
+        //echo __FILE__;
+        //echo '<pre>'.print_r($_SERVER,1).'</pre>';
+        require_once(dirname(__FILE__).'\..\modules\jsondb.php');
         $jdb  = new Jsondb('/DB/');
 
         $camera_data = $jdb->select('*', 'cams', Array('where'=>Array('name'=>$_POST['model']),));
@@ -60,7 +62,7 @@
         return $exposuremode;
     }
     function generatecategoriestags($categories) {
-        require_once($_SERVER['APPL_PHYSICAL_PATH'].'\modules\jsondb.php');
+        require_once($_SERVER['DOCUMENT_ROOT'].'\modules\jsondb.php');
         $jdb  = new Jsondb('/DB/');
         $hts_data = $jdb->select('*', 'hts', '');
         $result = '';
