@@ -27,8 +27,6 @@
         foreach($lens_data[0]['htgroups'] as $category){
             $categoriestext = $categoriestext.$category.PHP_EOL;
         }
-        //echo '<pre>'.print_r($camera_data,1).'</pre>';
-        //echo '<pre>'.print_r($lens_data,1).'</pre>';
     } else {
         $outputtext = $_POST['outputtext'].generatecategoriestags(explode("\n", str_replace("\r", "", $_POST['categories'])));
     }
