@@ -30,7 +30,7 @@
         //echo '<pre>'.print_r($camera_data,1).'</pre>';
         //echo '<pre>'.print_r($lens_data,1).'</pre>';
     } else {
-        $outputtext = $_POST['outputtext'];    
+        $outputtext = $_POST['outputtext'].generatecategoriestags(explode("\n", str_replace("\r", "", $_POST['categories'])));
     }
     function get_shutter($shutter) {
         $result = ' sec.';
@@ -56,7 +56,34 @@
         return $exposuremode;
     }
     function generatecategoriestags($categories) {
-        
+        require_once("../modules/jsondb.php");
+        $jdb  = new Jsondb('/DB/');
+        $hts_data = $jdb->select('*', 'hts', '');
+        $result = '';
+        foreach($hts_data as $currenttag) {
+            if ($a contains 'are')
+            if(!($result contains $currenttag['tag'].' ')) {
+                foreach($currenttag['groups'] as $currentgroup) {
+                    if(in_array($currentgroup, $categories) && ($currentgroup != '')){
+                        $result = $result.$currenttag['tag'].' ';
+                    }
+                }
+                if(count($currenttag['crossgroups']) > 1 && validcross($categories, $currenttag['crossgroups'])) {
+                    $result = $result.$currenttag['tag'].' ';
+                }
+            }
+        }
+        return $result;
+    }
+    function validcross($categories, $crossgroups) {
+        foreach($crossgroups as $currentcross) {
+            if(($currentcross != '')) {
+                if(!in_array($currentcross, $categories)) {
+                    return FALSE;
+                }
+            }
+        }
+        return TRUE;
     }
 ?>
 <!DOCTYPE html>
