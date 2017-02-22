@@ -32,7 +32,7 @@
         }
     }
      else {
-        $outputtext = $_POST['outputtext'].generatecategoriestags(explode("\n", str_replace("\r", "", $_POST['categories'])));
+        //$outputtext = $_POST['outputtext'].generatecategoriestags(explode("\n", str_replace("\r", "", $_POST['categories'])));
     }
     function get_shutter($shutter) {
         $result = ' sec.';
@@ -57,26 +57,26 @@
         };
         return $exposuremode;
     }
-    function generatecategoriestags($categories) {
-        require_once("../modules/jsondb.php");
-        $jdb  = new Jsondb('/DB/');
-        $hts_data = $jdb->select('*', 'hts', '');
-        $result = '';
-        foreach($hts_data as $currenttag) {
-            $currenttagtext = $currenttag['tag'].' ';
-            if(strpos($result, $currenttagtext) === false) {
-                foreach($currenttag['groups'] as $currentgroup) {
-                    if(in_array($currentgroup, $categories) && ($currentgroup != '')){
-                        $result = $result.$currenttag['tag'].' ';
-                    }
-                }
-                if((count($currenttag['crossgroups']) > 1) && validcross($categories, $currenttag['crossgroups'])) {
-                    $result = $result.$currenttag['tag'].' ';
-                }
-            }
-        }
-        return $result;
-    }
+    //function generatecategoriestags($categories) {
+    //    require_once("../modules/jsondb.php");
+    //    $jdb  = new Jsondb('/DB/');
+    //    $hts_data = $jdb->select('*', 'hts', '');
+    //    $result = '';
+    //    foreach($hts_data as $currenttag) {
+    //        $currenttagtext = $currenttag['tag'].' ';
+    //        if(strpos($result, $currenttagtext) === false) {
+    //            foreach($currenttag['groups'] as $currentgroup) {
+    //                if(in_array($currentgroup, $categories) && ($currentgroup != '')){
+    //                    $result = $result.$currenttag['tag'].' ';
+    //                }
+    //            }
+    //            if((count($currenttag['crossgroups']) > 1) && validcross($categories, $currenttag['crossgroups'])) {
+    //                $result = $result.$currenttag['tag'].' ';
+    //            }
+    //        }
+    //    }
+    //    return $result;
+    //}
     function validcross($categories, $crossgroups) {
         foreach($crossgroups as $currentcross) {
             if(($currentcross != '')) {
