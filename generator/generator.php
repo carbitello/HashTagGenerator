@@ -3,16 +3,16 @@
     error_reporting(E_ALL);
     $categoriestext = '';
     $outputtext = '';
+    $jsondbpath = str_replace("generator\generator.php", "\modules\jsondb.php", $_SERVER['SCRIPT_FILENAME']);
+
     if(empty($_POST['categories'])){
         $exposuretime = get_shutter($_POST['exposure']);
         $exposuremode = get_exposuretext($_POST['exposure-mode']);
         $focalLength = $_POST['focalLength'];
         $aperture = $_POST['aperture'];
         $iso = $_POST['iso'];
-        //echo dirname(__FILE__).'\..\modules\jsondb.php';
-        //echo __FILE__;
-        //echo '<pre>'.print_r($_SERVER,1).'</pre>';
-        require_once(dirname(__FILE__).'\..\modules\jsondb.php');
+
+        require_once($jsondbpath);
         $jdb  = new Jsondb('/DB/');
 
         $camera_data = $jdb->select('*', 'cams', Array('where'=>Array('name'=>$_POST['model']),));
@@ -36,7 +36,7 @@
         }
     }
      else {
-        $outputtext = $_POST['outputtext'].generatecategoriestags(explode("\n", str_replace("\r", "", $_POST['categories'])));
+        $outputtext = $_POST['outputtext'].generatecategoriestags(explode("\n", str_replace("\r", "", $_POST['categories'])), $jsondbpath);
     }
     function get_shutter($shutter) {
         $result = ' sec.';
@@ -61,8 +61,8 @@
         };
         return $exposuremode;
     }
-    function generatecategoriestags($categories) {
-        require_once($_SERVER['DOCUMENT_ROOT'].'\modules\jsondb.php');
+    function generatecategoriestags($categories, $jsondbpath) {
+        require_once($jsondbpath);
         $jdb  = new Jsondb('/DB/');
         $hts_data = $jdb->select('*', 'hts', '');
         $result = '';
