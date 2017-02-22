@@ -10,7 +10,7 @@ class Jsondb{
 	public function __construct($path = false){		 
         $jsondbpath = str_replace("jsondb.php", "", __FILE__);
         $jsondbpath = str_replace("modules", "", $jsondbpath);
-        //echo $jsondbpath.$path;
+        echo $jsondbpath.$path;
         //echo __FILE__;
 		$this->path = (!$path)?$jsondbpath.'/jdb/':$jsondbpath.$path;	
 	}
