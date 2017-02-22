@@ -8,10 +8,11 @@ class Jsondb{
 			$statusMSG = Array();
 	
 	public function __construct($path = false){
-        echo __FILE__;		 
-        $jsondbpath = str_replace("jsondb.php", "", __FILE__);
-        $jsondbpath = str_replace("modules", "", $jsondbpath);
-		$this->path = (!$path)?$jsondbpath.'/jdb/':$jsondbpath.$path;	
+        //$jsondbpath = str_replace("jsondb.php", "", __FILE__);
+        //$jsondbpath = str_replace("modules", "", $jsondbpath);
+        $jsondbpath = '/var/www/htgen/DB/';
+        $this->path = $jsondbpath;	
+		//$this->path = (!$path)?$jsondbpath.'/jdb/':$jsondbpath.$path;	
 	}
 	
 	/*
