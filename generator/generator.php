@@ -9,7 +9,7 @@
         $iso = $_POST['iso'];
 
         //echo $_SERVER['DOCUMENT_ROOT'].'/modules/jsondb.php';
-        require_once($_SERVER['DOCUMENT_ROOT'].'/modules/jsondb.php');
+        require_once($_SERVER['DOCUMENT_ROOT'].'\modules\jsondb.php');
         //require_once("../modules/jsondb.php");
         $jdb  = new Jsondb('/DB/');
 
@@ -61,7 +61,7 @@
     }
     function generatecategoriestags($categories) {
     //    require_once("../modules/jsondb.php");
-        require_once($_SERVER['DOCUMENT_ROOT'].'/modules/jsondb.php');
+        require_once($_SERVER['DOCUMENT_ROOT'].'\modules\jsondb.php');
         $jdb  = new Jsondb('/DB/');
         $hts_data = $jdb->select('*', 'hts', '');
         $result = '';
