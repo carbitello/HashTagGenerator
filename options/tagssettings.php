@@ -11,9 +11,6 @@
         );
         $result = $jdb->create('hts', $keys);
     }
-    //echo '<pre>'.print_r($_POST['htarray'],1).'</pre>';
-    //echo $_POST['htarray'];
-    //echo $_POST['htarray'][1];
     if(!empty($_POST['htarray'])){
         $tags = explode("\n", str_replace("\r", "", $_POST['htarray']));
         foreach($tags as $current){
