@@ -4,7 +4,7 @@
     $categoriestext = '';
     $outputtext = '';
     $jsondbpath = str_replace("generator\generator.php", "\modules\jsondb.php", $_SERVER['SCRIPT_FILENAME']);
-
+    echo $jsondbpath;
     if(empty($_POST['categories'])){
         $exposuretime = get_shutter($_POST['exposure']);
         $exposuremode = get_exposuretext($_POST['exposure-mode']);
