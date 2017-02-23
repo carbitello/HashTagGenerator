@@ -1,3 +1,13 @@
+document.getElementById("db_categories").onchange = function () {
+    var select = document.getElementById("db_categories");
+    var text = select.options[select.selectedIndex].text;
+
+    document.getElementById("categories").append(text+ String.fromCharCode(13, 10).toString());
+
+    select.removeChild(select[select.selectedIndex]);
+    select.selectedIndex = 0;
+
+}
 document.getElementById("copytobuf").onclick = function () {
     element = document.getElementById("outputtext");
     try {

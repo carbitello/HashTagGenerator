@@ -1,0 +1,20 @@
+.catdiv {
+    width: 300px;
+}
+.categories_span {
+    height: 20px;
+    float: left;
+    vertical-align: central;
+}
+.db_categories {
+    height: 20px;
+    float: right;
+}
+.genarea  {
+    width: 294px;
+    height: 150px;
+    margin-top: 5px;
+}
+.generate, .copy {
+    width: 300px;
+}

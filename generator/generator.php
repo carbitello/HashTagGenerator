@@ -923,15 +923,18 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width" />
-        <title></title>
+        <link rel="stylesheet" type="text/css" href="generator.css">
+        <title>Generation HTags</title>
     </head>
     <body>
         <form method="post" action="generator.php">
-            <span>Categories: </span><select id="db_categories"><?php echo $db_categories; ?></select><br />
-            <textarea name="categories"><?php echo $categoriestext; ?></textarea><br />
-            <input type="submit" value="generate" /><br />
-            <textarea id ="outputtext" name="outputtext"><?php echo $outputtext; ?></textarea><br />
-            <input type="button" id="copytobuf" value="copy" />
+            <div class="catdiv">
+                <span class="categories_span">Categories: </span><select class="db_categories" id="db_categories"><?php echo '<option disabled selected value> -- select category to add -- </option>'.$db_categories; ?></select>
+            </div><br />
+            <textarea class ="genarea" id="categories" name="categories"><?php echo $categoriestext; ?></textarea><br />
+            <input class="generate" type="submit" value="generate" /><br />
+            <textarea class ="genarea" id ="outputtext" name="outputtext"><?php echo $outputtext; ?></textarea><br />
+            <input class="copy" type="button" id="copytobuf" value="copy" />
         </form>
         <script type="text/javascript" src="generator.js"></script>
     </body>
