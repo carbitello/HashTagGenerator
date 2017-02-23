@@ -3,9 +3,7 @@
     //error_reporting(E_ALL);
     $categoriestext = '';
     $outputtext = '';
-    $jsondbpath = str_replace("generator.php", "jsondb.php", $_SERVER['SCRIPT_FILENAME']);
-    $jsondbpath = str_replace("generator", "modules", $jsondbpath);
-
+    $present_categories = array();
     if(empty($_POST['categories'])){
         $exposuretime = get_shutter($_POST['exposure']);
         $exposuremode = get_exposuretext($_POST['exposure-mode']);
@@ -13,12 +11,10 @@
         $aperture = $_POST['aperture'];
         $iso = $_POST['iso'];
 
-        //require_once($jsondbpath);
         $jdb  = new Jsondb('/DB/');
 
         $camera_data = $jdb->select('*', 'cams', Array('where'=>Array('name'=>$_POST['model']),));
         $lens_data = $jdb->select('*', 'lens', Array('where'=>Array('id'=>$_POST['lens']),));
-        //echo '<pre>'.print_r($camera_data,1).'</pre>';
         $outputtext = 'Camera: '.$camera_data[0]['text'].','.PHP_EOL;
         $outputtext = $outputtext.'Lens: '.$lens_data[0]['text'].','.PHP_EOL;
         $outputtext = $outputtext.'Exposure: '.$exposuremode.' '.$exposuretime.','.PHP_EOL;
@@ -27,16 +23,27 @@
             $outputtext = $outputtext.'Focal length: '.$focalLength.'mm,'.PHP_EOL;
         }
         $outputtext = $outputtext.'ISO: '.$iso.'.'.PHP_EOL;
-                
+        
         foreach($camera_data[0]['htgroups'] as $category){
             $categoriestext = $categoriestext.$category.PHP_EOL;
+            if(!in_array($category, $present_categories) && ($category != '')){
+                $present_categories[] = $currentgroup;
+            }
         }
         foreach($lens_data[0]['htgroups'] as $category){
             $categoriestext = $categoriestext.$category.PHP_EOL;
+            if(!in_array($category, $present_categories) && ($category != '')){
+                $present_categories[] = $currentgroup;
+            }
         }
+        if($_POST['exposure'] >= 1) {
+            $categoriestext = $categoriestext.'longexposure'.PHP_EOL;
+            $present_categories[] = 'longexposure';
+        }
+        $db_categories = get_DB_categories($jdb->select('*', 'hts', ''), $present_categories);
     }
      else {
-        $outputtext = $_POST['outputtext'].generatecategoriestags(explode("\n", str_replace("\r", "", $_POST['categories'])), $jsondbpath);
+        $outputtext = $_POST['outputtext'].generatecategoriestags(explode("\n", str_replace("\r", "", $_POST['categories'])));
     }
     function get_shutter($shutter) {
         $result = ' sec.';
@@ -61,8 +68,7 @@
         };
         return $exposuremode;
     }
-    function generatecategoriestags($categories, $jsondbpath) {
-        //require_once($jsondbpath);
+    function generatecategoriestags($categories) {
         $jdb  = new Jsondb('/DB/');
         $hts_data = $jdb->select('*', 'hts', '');
         $result = '';
@@ -79,6 +85,22 @@
                 }
             }
         }
+        return $result;
+    }
+    function get_DB_categories($tags, $present_categories) {
+        $added_categories = array();
+        foreach($tags as $currenttag) {
+            foreach($currenttag['groups'] as $currentgroup) {
+                if(!in_array($currentgroup, $present_categories) && !in_array($currentgroup, $added_categories) && ($currentgroup != '')){
+                    $added_categories[] = $currentgroup;
+                }
+            }
+        }
+        $result = '';
+        natcasesort($added_categories);
+        foreach($added_categories as $currentgroup) {
+                    $result = $result.'<option>'.$currentgroup.'</option>';
+            }
         return $result;
     }
     function validcross($categories, $crossgroups) {
@@ -905,9 +927,10 @@
     </head>
     <body>
         <form method="post" action="generator.php">
+            <span>Categories: </span><select id="db_categories"><?php echo $db_categories; ?></select><br />
             <textarea name="categories"><?php echo $categoriestext; ?></textarea><br />
+            <input type="submit" value="generate" /><br />
             <textarea id ="outputtext" name="outputtext"><?php echo $outputtext; ?></textarea><br />
-            <input type="submit" value="generate" />
             <input type="button" id="copytobuf" value="copy" />
         </form>
         <script type="text/javascript" src="generator.js"></script>
