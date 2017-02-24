@@ -27,13 +27,13 @@
         foreach($camera_data[0]['htgroups'] as $category){
             $categoriestext = $categoriestext.$category.PHP_EOL;
             if(!in_array($category, $present_categories) && ($category != '')){
-                $present_categories[] = $currentgroup;
+                $present_categories[] = $category;
             }
         }
         foreach($lens_data[0]['htgroups'] as $category){
             $categoriestext = $categoriestext.$category.PHP_EOL;
             if(!in_array($category, $present_categories) && ($category != '')){
-                $present_categories[] = $currentgroup;
+                $present_categories[] = $category;
             }
         }
         if($_POST['exposure'] >= 1) {
