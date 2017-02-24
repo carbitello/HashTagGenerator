@@ -929,7 +929,7 @@
     <body>
         <form method="post" action="generator.php">
             <div class="catdiv">
-                <span class="categories_span">Categories: </span><select class="db_categories" id="db_categories"><?php echo '<option disabled selected value> -- select category to add -- </option>'.$db_categories; ?></select>
+                <span class="categories_span" id="categories_span">Categories: </span><select class="db_categories" id="db_categories"><?php echo '<option disabled selected value> -- select category to add -- </option>'.$db_categories; ?></select>
             </div><br />
             <textarea class ="genarea" id="categories" name="categories"><?php echo $categoriestext; ?></textarea><br />
             <input class="generate" type="submit" value="generate" /><br />

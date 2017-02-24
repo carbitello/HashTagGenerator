@@ -1,15 +1,11 @@
 document.getElementById("db_categories").onchange = function () {
-    var select = document.getElementById("db_categories");
-    var text = select.options[select.selectedIndex].text;
-
-    document.getElementById("categories").append(text+ String.fromCharCode(13, 10).toString());
-
-    select.removeChild(select[select.selectedIndex]);
-    select.selectedIndex = 0;
-
+    pasteCategory();
+}
+document.getElementById("categories_span").onclick = function () {
+    pasteCategory();
 }
 document.getElementById("copytobuf").onclick = function () {
-    element = document.getElementById("outputtext");
+    var element = document.getElementById("outputtext");
     try {
         element.select();
 
@@ -25,4 +21,13 @@ document.getElementById("copytobuf").onclick = function () {
     var count = (element.value.split('#').length - 1);
     if (count > 30)
         alert('You have ' + count + '#');
+}
+function pasteCategory() {
+    var select = document.getElementById("db_categories");
+    var text = select.options[select.selectedIndex].text;
+
+    document.getElementById("categories").append(text + String.fromCharCode(13, 10).toString());
+
+    select.removeChild(select[select.selectedIndex]);
+    select.selectedIndex = 0;
 }
