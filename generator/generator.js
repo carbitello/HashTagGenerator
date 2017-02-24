@@ -24,6 +24,10 @@ document.getElementById("copytobuf").onclick = function () {
 }
 function pasteCategory() {
     var select = document.getElementById("db_categories");
+
+    if (select.selectedIndex === 0)
+        return;
+
     var text = select.options[select.selectedIndex].text;
 
     document.getElementById("categories").append(text + String.fromCharCode(13, 10).toString());
