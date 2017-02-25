@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <script type="text/javascript" src="modules/exif.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css" />
 </head>
 <body>
@@ -10,7 +11,7 @@
         <span id="output"><img class="thumb" id="thumb" title="Load" alt="Upload" src="images/loadimg.jpg" /></span>
             <div class="exif">
                 <span class="tagname">Model: </span><input class="tagvalue" id="model" type="text" name="model" value="" readonly="readonly" /><br />
-                <span class="tagname">Lens: </span><input class="tagvalue" id="lens" type="text" name="lens" value="" readonly="readonly" /><br />
+                <span class="tagname">Lens: </span><select class="lensvalue" id="lens" name="lens"></select><br />
                 <span class="tagname">Exposure: </span><input class="tagvalue" id="exposure" type="text" name="exposure" value="" readonly="readonly" /><br />
                 <span class="tagname">Exposure mode: </span><input class="tagvalue" id="exposure-mode" type="text" name="exposure-mode" value="" readonly="readonly" /><br />
                 <span class="tagname">Focal length: </span><input class="tagvalue" id="focalLength" type="text" name="focalLength" value="" readonly="readonly" /><br />

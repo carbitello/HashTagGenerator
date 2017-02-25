@@ -14,7 +14,7 @@
         $jdb  = new Jsondb('/DB/');
 
         $camera_data = $jdb->select('*', 'cams', Array('where'=>Array('name'=>$_POST['model']),));
-        $lens_data = $jdb->select('*', 'lens', Array('where'=>Array('id'=>$_POST['lens']),));
+        $lens_data = $jdb->select('*', 'lens', Array('where'=>Array('name'=>$_POST['lens']),));
         $outputtext = 'Camera: '.$camera_data[0]['text'].','.PHP_EOL;
         $outputtext = $outputtext.'Lens: '.$lens_data[0]['text'].','.PHP_EOL;
         $outputtext = $outputtext.'Exposure: '.$exposuremode.' '.$exposuretime.','.PHP_EOL;
@@ -43,7 +43,7 @@
         $db_categories = get_DB_categories($jdb->select('*', 'hts', ''), $present_categories);
     }
      else {
-        $outputtext = $_POST['outputtext'].generatecategoriestags(explode("\n", str_replace("\r", "", $_POST['categories'])));
+        $outputtext = generatecategoriestags($_POST['outputtext'], explode("\n", str_replace("\r", "", $_POST['categories'])));
     }
     function get_shutter($shutter) {
         $result = ' sec.';
@@ -68,12 +68,12 @@
         };
         return $exposuremode;
     }
-    function generatecategoriestags($categories) {
+    function generatecategoriestags($presenttext, $categories) {
         $jdb  = new Jsondb('/DB/');
         $hts_data = $jdb->select('*', 'hts', '');
-        $result = '';
+        $result = $presenttext;
         foreach($hts_data as $currenttag) {
-            $currenttagtext = $currenttag['tag'].' ';
+            $currenttagtext = $currenttag['tag'];
             if(strpos($result, $currenttagtext) === false) {
                 foreach($currenttag['groups'] as $currentgroup) {
                     if(in_array($currentgroup, $categories) && ($currentgroup != '')){

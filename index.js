@@ -1,3 +1,4 @@
+$(document).ready(function () {
     document.getElementById("input-file").onchange = function (e) {
         EXIF.getData(e.target.files[0], function () {
 
@@ -7,6 +8,13 @@
 
             document.getElementById("model").value = EXIF.getTag(this, "Model");
             document.getElementById("lens").value = EXIF.getTag(this, "undefined").toString();
+
+
+            $.get('DB/lens.php', { lensID: EXIF.getTag(this, "undefined").toString() }, onAjaxSuccess);
+            function onAjaxSuccess(data) {
+                document.getElementById("lens").innerHTML = data;
+            }
+
             document.getElementById("exposure").value = EXIF.getTag(this, "ExposureTime");
             document.getElementById("exposure-mode").value = EXIF.getTag(this, "ExposureProgram");
             document.getElementById("focalLength").value = EXIF.getTag(this, "FocalLengthIn35mmFilm");
@@ -25,6 +33,7 @@
             })(this);
             reader.readAsDataURL(this);
         });
+
         document.getElementById("file-manager").removeChild(document.getElementById("input-file"));
     }
     document.getElementById("output").onclick = function () {
@@ -39,4 +48,4 @@
         document.forms[0].action = "options/settings.php";
         document.forms[0].submit();
     }
-
+});
