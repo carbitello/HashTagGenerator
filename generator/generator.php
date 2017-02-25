@@ -77,11 +77,12 @@
             if(strpos($result, $currenttagtext) === false) {
                 foreach($currenttag['groups'] as $currentgroup) {
                     if(in_array($currentgroup, $categories) && ($currentgroup != '')){
-                        $result = $result.$currenttag['tag'].' ';
+                        $result = $result.$currenttagtext.' ';
+                        break;
                     }
                 }
                 if((count($currenttag['crossgroups']) > 1) && validcross($categories, $currenttag['crossgroups'])) {
-                    $result = $result.$currenttag['tag'].' ';
+                    $result = $result.$currenttagtext.' ';
                 }
             }
         }
