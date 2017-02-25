@@ -46,7 +46,7 @@
         $outputtext = generatecategoriestags($_POST['outputtext'], explode("\n", str_replace("\r", "", $_POST['categories'])));
     }
     function get_shutter($shutter) {
-        $result = ' sec.';
+        $result = 'sec.';
         if($shutter < 1) {
             $result = '1/'.round(1/$shutter).$result;
         }
