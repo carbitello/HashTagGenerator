@@ -2,8 +2,8 @@
     $lensID = $_GET['lensID'];
     $string = file_get_contents("lens.json");
     $json_a = json_decode($string, true);
-    $result ='<select>';
-    $defaultresult='<select>';
+    $result ='';
+    $defaultresult='';
     foreach($json_a as $currentlens) {
         $currentoption = '<option>'.$currentlens['name'].'</option>';
         if($currentlens['id'] == $lensID) {
@@ -11,9 +11,9 @@
         }
         $defaultresult = $defaultresult.$currentoption;
     }
-    if(!empty($result)) {
+    if(empty($result)) {
         $result = $defaultresult;
     }
-    $result = $result.'</select>';
+    $result = '<select>'.$result.'</select>';
     echo $result;
 ?>
