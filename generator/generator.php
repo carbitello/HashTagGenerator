@@ -96,6 +96,11 @@
                     $added_categories[] = $currentgroup;
                 }
             }
+            foreach($currenttag['crossgroups'] as $currentgroup) {
+                if(!in_array($currentgroup, $present_categories) && !in_array($currentgroup, $added_categories) && ($currentgroup != '')){
+                    $added_categories[] = $currentgroup;
+                }
+            }
         }
         $result = '';
         natcasesort($added_categories);
