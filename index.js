@@ -7,14 +7,10 @@ $(document).ready(function () {
             }
 
             document.getElementById("model").value = EXIF.getTag(this, "Model");
-            document.getElementById("lens").value = EXIF.getTag(this, "undefined").toString();
-
-
             $.get('DB/lens.php', { lensID: EXIF.getTag(this, "undefined").toString() }, onAjaxSuccess);
             function onAjaxSuccess(data) {
                 document.getElementById("lens").innerHTML = data;
             }
-
             document.getElementById("exposure").value = EXIF.getTag(this, "ExposureTime");
             document.getElementById("exposure-mode").value = EXIF.getTag(this, "ExposureProgram");
             document.getElementById("focalLength").value = EXIF.getTag(this, "FocalLengthIn35mmFilm");

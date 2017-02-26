@@ -3,10 +3,17 @@
     $string = file_get_contents("lens.json");
     $json_a = json_decode($string, true);
     $result ='<select>';
-    foreach($json_a as $currentlens){
-        if($currentlens['id'] == $lensID)
-            $result = $result.'<option>'.$currentlens['name'].'</option>';
+    $defaultresult='<select>';
+    foreach($json_a as $currentlens) {
+        $currentoption = '<option>'.$currentlens['name'].'</option>';
+        if($currentlens['id'] == $lensID) {
+            $result = $result.$currentoption;
+        }
+        $defaultresult = $defaultresult.$currentoption;
     }
-    $result =$result.'</select>';
+    if(!empty($result)) {
+        $result = $defaultresult;
+    }
+    $result = $result.'</select>';
     echo $result;
 ?>
